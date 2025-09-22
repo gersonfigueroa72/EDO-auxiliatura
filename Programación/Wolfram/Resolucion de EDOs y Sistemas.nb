@@ -1,0 +1,530 @@
+(* Content-type: application/vnd.wolfram.mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Mathematica 13.0' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       158,          7]
+NotebookDataLength[     17216,        522]
+NotebookOptionsPosition[     15400,        486]
+NotebookOutlinePosition[     15804,        502]
+CellTagsIndexPosition[     15761,        499]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+Cell["\<\
+EJERCICIO: Resolver la EDO: y\[CloseCurlyQuote]\[CloseCurlyQuote]-3 y\
+\[CloseCurlyQuote]+2 y=0
+
+Iniciaremos definiendo una variable para la EDO\
+\>", "Text",
+ CellChangeTimes->{{3.967496951524621*^9, 
+  3.967496984884756*^9}},ExpressionUUID->"e3e1ff8e-f8e6-42da-a56a-\
+4a6ddb024f82"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{
+   RowBox[{"edo1", " ", "=", " ", 
+    RowBox[{
+     RowBox[{
+      RowBox[{
+       RowBox[{"y", "''"}], "[", "x", "]"}], "-", 
+      RowBox[{"3", 
+       RowBox[{
+        RowBox[{"y", "'"}], "[", "x", "]"}]}], "+", 
+      RowBox[{"2", 
+       RowBox[{"y", "[", "x", "]"}]}]}], "==", "0"}]}], ";"}], 
+  "\[IndentingNewLine]", 
+  RowBox[{"(*", 
+   RowBox[{
+    RowBox[{
+    "Para", " ", "resolver", " ", "EDOs", " ", "con", " ", "soluci\[OAcute]n",
+      " ", "exacta", " ", "usamos", " ", "Dsolve"}], ",", " ", 
+    RowBox[{"de", " ", "la", " ", "cual", " ", "su", " ", "sintaxis", " ", 
+     RowBox[{"es", ":", "\[IndentingNewLine]", 
+      RowBox[{"DSolve", "[", 
+       RowBox[{
+        RowBox[{"edo", " ", "a", " ", "resolver"}], ",", " ", 
+        RowBox[{"funcion", " ", "soluci\[OAcute]n"}], ",", " ", 
+        RowBox[{
+        "variable", " ", "dependiente", " ", "de", " ", "la", " ", "funcion", 
+         " ", "soluci\[OAcute]n"}]}], "]"}]}]}]}], 
+   "*)"}]}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"solGeneral1", "=", 
+    RowBox[{"DSolve", "[", 
+     RowBox[{"edo1", ",", 
+      RowBox[{"y", "[", "x", "]"}], ",", "x"}], "]"}]}], ";"}], 
+  "\[IndentingNewLine]", "\[IndentingNewLine]", 
+  RowBox[{"(*", 
+   RowBox[{
+   "Por", " ", "\[UAcute]ltimo", " ", "extraemos", " ", "la", " ", 
+    "soluci\[OAcute]n", " ", "y", " ", "simplificamos"}], "*)"}], 
+  "\[IndentingNewLine]"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"yGeneral1", "=", 
+    RowBox[{
+     RowBox[{"y", "[", "x", "]"}], "/.", " ", 
+     RowBox[{"solGeneral1", "[", 
+      RowBox[{"[", "1", "]"}], "]"}]}]}], ";"}], " ", 
+  RowBox[{"(*", 
+   RowBox[{
+   "Extraer", " ", "la", " ", "expresi\[OAcute]n", " ", "para", " ", "y"}], 
+   "*)"}]}], "\n", 
+ RowBox[{"Simplify", "[", "yGeneral1", "]"}]}], "Input",
+ CellChangeTimes->{{3.9674969941380634`*^9, 3.9674970335995703`*^9}, {
+  3.967497223986204*^9, 3.9674972287419634`*^9}},
+ CellLabel->"In[46]:=",ExpressionUUID->"6640a7cf-eaf0-4e92-b51a-f5be3400458c"],
+
+Cell[BoxData[
+ RowBox[{
+  SuperscriptBox["\[ExponentialE]", "x"], " ", 
+  RowBox[{"(", 
+   RowBox[{
+    TemplateBox[{"1"},
+     "C"], "+", 
+    RowBox[{
+     SuperscriptBox["\[ExponentialE]", "x"], " ", 
+     TemplateBox[{"2"},
+      "C"]}]}], ")"}]}]], "Output",
+ CellChangeTimes->{3.9674971155989976`*^9, 3.967497233763485*^9, 
+  3.9674976856393857`*^9},
+ CellLabel->"Out[49]=",ExpressionUUID->"e4c8405b-c511-4085-bb62-397cee2aaf80"]
+}, Open  ]],
+
+Cell["\<\
+En este bloque aprenderemos el c\[OAcute]digo necesario para resolver una EDO \
+con condiciones inciales
+
+EJERCICIO: Resolver la EDO: y\[CloseCurlyQuote]\[CloseCurlyQuote]-3 y\
+\[CloseCurlyQuote]+2 y=x con y(0)=1,y\[CloseCurlyQuote](0)=0
+
+Definimos la edo\
+\>", "Text",
+ CellChangeTimes->{{3.9674971596863985`*^9, 
+  3.9674971731555014`*^9}},ExpressionUUID->"fd97bc0b-bcfe-4ab6-abb2-\
+5b845e5ef0ef"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{
+   RowBox[{"edo2", " ", "=", " ", 
+    RowBox[{
+     RowBox[{
+      RowBox[{
+       RowBox[{"y", "''"}], "[", "x", "]"}], "-", 
+      RowBox[{"3", 
+       RowBox[{
+        RowBox[{"y", "'"}], "[", "x", "]"}]}], "+", 
+      RowBox[{"2", 
+       RowBox[{"y", "[", "x", "]"}]}]}], "==", "x"}]}], ";"}], 
+  "  "}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"condicion2", "=", 
+    RowBox[{"{", 
+     RowBox[{
+      RowBox[{
+       RowBox[{"y", "[", "0", "]"}], "==", "1"}], ",", 
+      RowBox[{
+       RowBox[{
+        RowBox[{"y", "'"}], "[", "0", "]"}], "==", "0"}]}], "}"}]}], ";"}], 
+  " ", 
+  RowBox[{"(*", 
+   RowBox[{";", " ", 
+    RowBox[{"suprime", " ", "el", " ", "print"}]}], "*)"}], 
+  "\[IndentingNewLine]", 
+  RowBox[{"(*", "Resolvemos", "*)"}], 
+  "\[IndentingNewLine]"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"solGeneral2", " ", "=", " ", 
+   RowBox[{"DSolve", "[", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"edo2", ",", "condicion2"}], "}"}], ",", 
+     RowBox[{"y", "[", "x", "]"}], ",", "x"}], "]"}]}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"yGeneral2", " ", "=", " ", 
+   RowBox[{
+    RowBox[{"y", "[", "x", "]"}], "/.", " ", 
+    RowBox[{"solGeneral2", "[", 
+     RowBox[{"[", "1", "]"}], "]"}]}]}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{"Simplify", "[", "yGeneral2", "]"}]}], "Input",
+ CellChangeTimes->{{3.9674971888841085`*^9, 3.967497213129411*^9}},
+ CellLabel->"In[50]:=",ExpressionUUID->"2f3e57ac-c233-4ec3-9b61-355b23aa84f2"],
+
+Cell[BoxData[
+ RowBox[{
+  FractionBox["1", "4"], " ", 
+  RowBox[{"(", 
+   RowBox[{"3", "+", 
+    RowBox[{"4", " ", 
+     SuperscriptBox["\[ExponentialE]", "x"]}], "-", 
+    RowBox[{"3", " ", 
+     SuperscriptBox["\[ExponentialE]", 
+      RowBox[{"2", " ", "x"}]]}], "+", 
+    RowBox[{"2", " ", "x"}]}], ")"}]}]], "Output",
+ CellChangeTimes->{{3.967497193364249*^9, 3.9674972183003054`*^9}, 
+   3.967497685688163*^9},
+ CellLabel->"Out[54]=",ExpressionUUID->"69b28199-f0d3-40af-9268-5bd805f92940"]
+}, Open  ]],
+
+Cell["\<\
+En este bloque aprenderemos el c\[OAcute]digo necesario para resolver un \
+sistema de EDOs sin condiciones inciales
+EJERCICIO: Resolver el sistema: \
+y\[CloseCurlyQuote]\[CloseCurlyQuote]+4x=3sin(t)
+\t\t                      x\[CloseCurlyQuote]-y\[CloseCurlyQuote]\
+\[CloseCurlyQuote]+y=2cos(t)
+(sin condiciones->soluci\[OAcute]n general)
+
+Definimos el sistema de EDOs\
+\>", "Text",
+ CellChangeTimes->{{3.9674972515469704`*^9, 
+  3.967497267284116*^9}},ExpressionUUID->"18b64dc6-4d14-47ef-bf5b-\
+06c6979dc20e"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{
+   RowBox[{"sistema1", "=", 
+    RowBox[{"{", 
+     RowBox[{
+      RowBox[{
+       RowBox[{
+        RowBox[{
+         RowBox[{"x", "''"}], "[", "t", "]"}], "+", 
+        RowBox[{"4", " ", 
+         RowBox[{"x", "[", "t", "]"}]}]}], "==", 
+       RowBox[{"3", " ", 
+        RowBox[{"Sin", "[", "t", "]"}]}]}], ",", 
+      RowBox[{
+       RowBox[{
+        RowBox[{
+         RowBox[{"x", "'"}], "[", "t", "]"}], "-", 
+        RowBox[{
+         RowBox[{"y", "''"}], "[", "t", "]"}], "+", 
+        RowBox[{"y", "[", "t", "]"}]}], "==", 
+       RowBox[{"2", " ", 
+        RowBox[{"Cos", "[", "t", "]"}]}]}]}], "}"}]}], ";"}], 
+  "\[IndentingNewLine]", "\[IndentingNewLine]", 
+  RowBox[{"(*", 
+   RowBox[{"Resolver", " ", "con", " ", "DSolve"}], "*)"}]}], "\n", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"solGeneral3", "=", 
+    RowBox[{"DSolve", "[", 
+     RowBox[{"sistema1", ",", 
+      RowBox[{"{", 
+       RowBox[{
+        RowBox[{"x", "[", "t", "]"}], ",", 
+        RowBox[{"y", "[", "t", "]"}]}], "}"}], ",", "t"}], "]"}]}], ";"}], 
+  "\[IndentingNewLine]", "\[IndentingNewLine]", 
+  RowBox[{"(*", 
+   RowBox[{
+   "Extraer", " ", "la", " ", "primera", " ", "familia", " ", "de", " ", 
+    "soluciones", " ", 
+    RowBox[{"(", 
+     RowBox[{"Part", " ", 
+      RowBox[{"con", "[", 
+       RowBox[{"[", "1", "]"}], "]"}]}], ")"}]}], "*)"}]}], "\n", 
+ RowBox[{
+  RowBox[{"xSol", "=", 
+   RowBox[{
+    RowBox[{"x", "[", "t", "]"}], "/.", " ", 
+    RowBox[{"solGeneral3", "[", 
+     RowBox[{"[", "1", "]"}], "]"}]}]}], ";"}], "\n", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"ySol", "=", 
+    RowBox[{
+     RowBox[{"y", "[", "t", "]"}], "/.", " ", 
+     RowBox[{"solGeneral3", "[", 
+      RowBox[{"[", "1", "]"}], "]"}]}]}], ";"}], "\n", "\[IndentingNewLine]", 
+  RowBox[{"(*", 
+   RowBox[{
+   "Simplificar", " ", "las", " ", "expresiones", " ", "resultantes"}], 
+   "*)"}]}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"xSolSimpl", "=", 
+   RowBox[{"Simplify", "[", "xSol", "]"}]}], ";"}], "\n", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"ySolSimpl", "=", 
+    RowBox[{"Simplify", "[", "ySol", "]"}]}], ";"}], "\n", 
+  "\[IndentingNewLine]", 
+  RowBox[{"(*", "Mostrar", "*)"}]}], "\[IndentingNewLine]", 
+ RowBox[{"{", 
+  RowBox[{"xSolSimpl", ",", "ySolSimpl"}], "}"}], "\n"}], "Input",
+ CellChangeTimes->{{3.9674972808350472`*^9, 3.967497285141711*^9}},
+ CellLabel->"In[55]:=",ExpressionUUID->"5163db2a-07ab-4dac-b472-14a67ed60abc"],
+
+Cell[BoxData[
+ RowBox[{"{", 
+  RowBox[{
+   RowBox[{
+    RowBox[{
+     TemplateBox[{"1"},
+      "C"], " ", 
+     RowBox[{"Cos", "[", 
+      RowBox[{"2", " ", "t"}], "]"}]}], "+", 
+    RowBox[{"Sin", "[", "t", "]"}], "+", 
+    RowBox[{
+     TemplateBox[{"2"},
+      "C"], " ", 
+     RowBox[{"Cos", "[", "t", "]"}], " ", 
+     RowBox[{"Sin", "[", "t", "]"}]}]}], ",", 
+   RowBox[{
+    FractionBox["1", "10"], " ", 
+    SuperscriptBox["\[ExponentialE]", 
+     RowBox[{"-", "t"}]], " ", 
+    RowBox[{"(", 
+     RowBox[{
+      RowBox[{"4", " ", 
+       TemplateBox[{"1"},
+        "C"]}], "-", 
+      RowBox[{"4", " ", 
+       SuperscriptBox["\[ExponentialE]", 
+        RowBox[{"2", " ", "t"}]], " ", 
+       TemplateBox[{"1"},
+        "C"]}], "+", 
+      TemplateBox[{"2"},
+       "C"], "+", 
+      RowBox[{
+       SuperscriptBox["\[ExponentialE]", 
+        RowBox[{"2", " ", "t"}]], " ", 
+       TemplateBox[{"2"},
+        "C"]}], "+", 
+      RowBox[{"5", " ", 
+       TemplateBox[{"3"},
+        "C"]}], "+", 
+      RowBox[{"5", " ", 
+       SuperscriptBox["\[ExponentialE]", 
+        RowBox[{"2", " ", "t"}]], " ", 
+       TemplateBox[{"3"},
+        "C"]}], "-", 
+      RowBox[{"5", " ", 
+       TemplateBox[{"4"},
+        "C"]}], "+", 
+      RowBox[{"5", " ", 
+       SuperscriptBox["\[ExponentialE]", 
+        RowBox[{"2", " ", "t"}]], " ", 
+       TemplateBox[{"4"},
+        "C"]}], "+", 
+      RowBox[{"5", " ", 
+       SuperscriptBox["\[ExponentialE]", "t"], " ", 
+       RowBox[{"Cos", "[", "t", "]"}]}], "-", 
+      RowBox[{"2", " ", 
+       SuperscriptBox["\[ExponentialE]", "t"], " ", 
+       TemplateBox[{"2"},
+        "C"], " ", 
+       RowBox[{"Cos", "[", 
+        RowBox[{"2", " ", "t"}], "]"}]}], "+", 
+      RowBox[{"4", " ", 
+       SuperscriptBox["\[ExponentialE]", "t"], " ", 
+       TemplateBox[{"1"},
+        "C"], " ", 
+       RowBox[{"Sin", "[", 
+        RowBox[{"2", " ", "t"}], "]"}]}]}], ")"}]}]}], "}"}]], "Output",
+ CellChangeTimes->{3.9674972929578056`*^9, 3.9674976858814898`*^9},
+ CellLabel->"Out[61]=",ExpressionUUID->"dffc3b48-fc31-4951-9122-5e4df1ca6c53"]
+}, Open  ]],
+
+Cell["\<\
+En este bloque aprenderemos el c\[OAcute]digo necesario para resolver un \
+sistema de EDOs con condiciones inciales
+Sistema: y\[CloseCurlyQuote]\[CloseCurlyQuote]+4x=3sin(t)
+\t\t x\[CloseCurlyQuote]-y\[CloseCurlyQuote]\[CloseCurlyQuote]+y=2cos(t)
+
+EJERCICIO: Resolver el sistema:
+\t\t\t\tx\[CloseCurlyQuote]-y+z=0
+\t\t\t -x+y\[CloseCurlyQuote]-y=0
+\t\t\t -x+z\[CloseCurlyQuote]-z=0
+con las condiciones x(0)=1,y(0)=0,z(0)=0
+
+
+Definimos el sistema de ecuaciones\
+\>", "Text",
+ CellChangeTimes->{{3.9674973767270327`*^9, 
+  3.96749739971949*^9}},ExpressionUUID->"d105dfc7-dbfc-4be0-b757-\
+39ae24aafd96"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{"sistema2", "=", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{
+      RowBox[{
+       RowBox[{
+        RowBox[{"x", "'"}], "[", "t", "]"}], "-", 
+       RowBox[{"y", "[", "t", "]"}], "+", 
+       RowBox[{"z", "[", "t", "]"}]}], "==", "0"}], ",", 
+     RowBox[{
+      RowBox[{
+       RowBox[{"-", 
+        RowBox[{"x", "[", "t", "]"}]}], "+", 
+       RowBox[{
+        RowBox[{"y", "'"}], "[", "t", "]"}], "-", 
+       RowBox[{"y", "[", "t", "]"}]}], "==", "0"}], ",", 
+     RowBox[{
+      RowBox[{
+       RowBox[{"-", 
+        RowBox[{"x", "[", "t", "]"}]}], "+", 
+       RowBox[{
+        RowBox[{"z", "'"}], "[", "t", "]"}], "-", 
+       RowBox[{"z", "[", "t", "]"}]}], "==", "0"}]}], "}"}]}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"condicion3", " ", "=", " ", 
+    RowBox[{"{", 
+     RowBox[{
+      RowBox[{
+       RowBox[{"x", "[", "0", "]"}], "==", "0"}], ",", 
+      RowBox[{
+       RowBox[{"y", "[", "0", "]"}], "==", "0"}], ",", 
+      RowBox[{
+       RowBox[{"z", "[", "0", "]"}], "==", "1"}]}], "}"}]}], ";"}], 
+  "\[IndentingNewLine]", "\[IndentingNewLine]", 
+  RowBox[{"(*", "Resolvemos", "*)"}]}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"solGeneral4", " ", "=", " ", 
+   RowBox[{"DSolve", "[", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"sistema2", ",", "condicion3"}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"x", "[", "t", "]"}], ",", 
+       RowBox[{"y", "[", "t", "]"}], ",", 
+       RowBox[{"z", "[", "t", "]"}]}], "}"}], ",", "t"}], "]"}]}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"xSol2", " ", "=", " ", 
+   RowBox[{
+    RowBox[{"x", "[", "t", "]"}], "/.", 
+    RowBox[{"solGeneral4", "[", 
+     RowBox[{"[", "1", "]"}], "]"}]}]}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"ySol2", " ", "=", " ", 
+   RowBox[{
+    RowBox[{"y", "[", "t", "]"}], "/.", 
+    RowBox[{"solGeneral4", "[", 
+     RowBox[{"[", "1", "]"}], "]"}]}]}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"zSol2", " ", "=", " ", 
+   RowBox[{
+    RowBox[{"z", "[", "t", "]"}], "/.", 
+    RowBox[{"solGeneral4", "[", 
+     RowBox[{"[", "1", "]"}], "]"}]}]}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{"Simplify", "[", "xSol2", "]"}], "\[IndentingNewLine]", 
+ RowBox[{"Simplify", "[", "ySol2", "]"}], "\[IndentingNewLine]", 
+ RowBox[{"Simplify", "[", "zSol2", "]"}]}], "Input",
+ CellChangeTimes->{
+  3.9674974156344504`*^9, {3.9674974640592613`*^9, 3.9674975922499423`*^9}},
+ CellLabel->"In[62]:=",ExpressionUUID->"ec9dbb91-3c1a-46d7-ae77-811b5a3bb9f8"],
+
+Cell[BoxData[
+ RowBox[{"1", "-", 
+  SuperscriptBox["\[ExponentialE]", "t"]}]], "Output",
+ CellChangeTimes->{3.9674974215866127`*^9, 3.9674975988088894`*^9, 
+  3.9674976859067073`*^9},
+ CellLabel->"Out[68]=",ExpressionUUID->"93c6c2ef-ad21-4db8-91b1-22a97a3fcdb7"],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"-", "1"}], "-", 
+  RowBox[{
+   SuperscriptBox["\[ExponentialE]", "t"], " ", 
+   RowBox[{"(", 
+    RowBox[{
+     RowBox[{"-", "1"}], "+", "t"}], ")"}]}]}]], "Output",
+ CellChangeTimes->{3.9674974215866127`*^9, 3.9674975988088894`*^9, 
+  3.967497685908216*^9},
+ CellLabel->"Out[69]=",ExpressionUUID->"e8255047-41fc-4673-bb4b-3240bed4482d"],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"-", "1"}], "-", 
+  RowBox[{
+   SuperscriptBox["\[ExponentialE]", "t"], " ", 
+   RowBox[{"(", 
+    RowBox[{
+     RowBox[{"-", "2"}], "+", "t"}], ")"}]}]}]], "Output",
+ CellChangeTimes->{3.9674974215866127`*^9, 3.9674975988088894`*^9, 
+  3.967497685911824*^9},
+ CellLabel->"Out[70]=",ExpressionUUID->"8dbeaee7-f126-4ba1-8f58-170af2b80d9a"]
+}, Open  ]],
+
+Cell["\<\
+*POR ULTIMO, haremos la verificaci\[OAcute]n de que las soluciones cumplan la \
+EDO
+(Pendiente actualizar...)*)\
+\>", "Text",
+ CellChangeTimes->{
+  3.967497619521082*^9},ExpressionUUID->"0f59ccee-4a9a-42fa-ac18-\
+c871a99f797b"]
+},
+WindowSize->{1141.2, 568.8},
+WindowMargins->{{0, Automatic}, {Automatic, 0}},
+FrontEndVersion->"13.0 for Microsoft Windows (64-bit) (December 2, 2021)",
+StyleDefinitions->"Default.nb",
+ExpressionUUID->"c76b186e-805d-4a36-a679-d476f9c30a85"
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[558, 20, 294, 8, 81, "Text",ExpressionUUID->"e3e1ff8e-f8e6-42da-a56a-4a6ddb024f82"],
+Cell[CellGroupData[{
+Cell[877, 32, 2050, 55, 181, "Input",ExpressionUUID->"6640a7cf-eaf0-4e92-b51a-f5be3400458c"],
+Cell[2930, 89, 435, 13, 35, "Output",ExpressionUUID->"e4c8405b-c511-4085-bb62-397cee2aaf80"]
+}, Open  ]],
+Cell[3380, 105, 409, 11, 127, "Text",ExpressionUUID->"fd97bc0b-bcfe-4ab6-abb2-5b845e5ef0ef"],
+Cell[CellGroupData[{
+Cell[3814, 120, 1529, 47, 143, "Input",ExpressionUUID->"2f3e57ac-c233-4ec3-9b61-355b23aa84f2"],
+Cell[5346, 169, 495, 13, 48, "Output",ExpressionUUID->"69b28199-f0d3-40af-9268-5bd805f92940"]
+}, Open  ]],
+Cell[5856, 185, 520, 13, 150, "Text",ExpressionUUID->"18b64dc6-4d14-47ef-bf5b-06c6979dc20e"],
+Cell[CellGroupData[{
+Cell[6401, 202, 2437, 73, 314, "Input",ExpressionUUID->"5163db2a-07ab-4dac-b472-14a67ed60abc"],
+Cell[8841, 277, 2084, 68, 48, "Output",ExpressionUUID->"dffc3b48-fc31-4951-9122-5e4df1ca6c53"]
+}, Open  ]],
+Cell[10940, 348, 610, 17, 288, "Text",ExpressionUUID->"d105dfc7-dbfc-4be0-b757-39ae24aafd96"],
+Cell[CellGroupData[{
+Cell[11575, 369, 2554, 74, 219, "Input",ExpressionUUID->"ec9dbb91-3c1a-46d7-ae77-811b5a3bb9f8"],
+Cell[14132, 445, 262, 5, 32, "Output",ExpressionUUID->"93c6c2ef-ad21-4db8-91b1-22a97a3fcdb7"],
+Cell[14397, 452, 372, 10, 32, "Output",ExpressionUUID->"e8255047-41fc-4673-bb4b-3240bed4482d"],
+Cell[14772, 464, 372, 10, 32, "Output",ExpressionUUID->"8dbeaee7-f126-4ba1-8f58-170af2b80d9a"]
+}, Open  ]],
+Cell[15159, 477, 237, 7, 58, "Text",ExpressionUUID->"0f59ccee-4a9a-42fa-ac18-c871a99f797b"]
+}
+]
+*)
+
