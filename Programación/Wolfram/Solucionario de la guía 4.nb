@@ -1,0 +1,632 @@
+(* Content-type: application/vnd.wolfram.mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Mathematica 13.0' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       158,          7]
+NotebookDataLength[     20900,        624]
+NotebookOptionsPosition[     19190,        592]
+NotebookOutlinePosition[     19645,        609]
+CellTagsIndexPosition[     19602,        606]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+
+Cell[CellGroupData[{
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"(*", 
+   RowBox[{
+    RowBox[{"--", 
+     RowBox[{"--", 
+      RowBox[{"--", 
+       RowBox[{"--", 
+        RowBox[{"--", 
+         RowBox[{"--", 
+          RowBox[{"--", 
+           RowBox[{"--", 
+            RowBox[{"--", "Problema"}]}]}]}]}]}]}]}]}], " ", 
+    RowBox[{
+     RowBox[{
+      RowBox[{
+       RowBox[{
+        RowBox[{
+         RowBox[{
+          RowBox[{
+           RowBox[{
+            RowBox[{"1", "--"}], "--"}], "--"}], "--"}], "--"}], "--"}], 
+       "--"}], "--"}], "--"}]}], "*)"}], 
+  RowBox[{
+   RowBox[{
+    RowBox[{"eq1", "=", 
+     RowBox[{
+      RowBox[{
+       RowBox[{
+        RowBox[{"y", "'''"}], "[", "x", "]"}], "-", 
+       RowBox[{"3", " ", 
+        RowBox[{
+         RowBox[{"y", "''"}], "[", "x", "]"}]}], "+", 
+       RowBox[{"3", " ", 
+        RowBox[{
+         RowBox[{"y", "'"}], "[", "x", "]"}]}], "-", 
+       RowBox[{"y", "[", "x", "]"}]}], "==", "0"}]}], ";"}], "\n", 
+   RowBox[{
+    RowBox[{"ic1", "=", 
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{
+        RowBox[{"y", "[", "0", "]"}], "==", "1"}], ",", 
+       RowBox[{
+        RowBox[{
+         RowBox[{"y", "'"}], "[", "0", "]"}], "==", "1"}], ",", 
+       RowBox[{
+        RowBox[{
+         RowBox[{"y", "''"}], "[", "0", "]"}], "==", "1"}]}], "}"}]}], ";"}], 
+   "\n", 
+   RowBox[{
+    RowBox[{"sol1", "=", 
+     RowBox[{"DSolveValue", "[", 
+      RowBox[{
+       RowBox[{"{", 
+        RowBox[{"eq1", ",", "ic1"}], "}"}], ",", 
+       RowBox[{"y", "[", "x", "]"}], ",", "x"}], "]"}]}], ";"}], "\n", 
+   RowBox[{
+    RowBox[{"Print", "[", 
+     RowBox[{"\"\<Soluci\[OAcute]n 1: \>\"", ",", "sol1"}], "]"}], ";"}], 
+   "\n", 
+   RowBox[{
+    RowBox[{"Print", "[", 
+     RowBox[{
+     "\"\<Verificaci\[OAcute]n C.I. (y(0), y'(0), y''(0)) = \>\"", ",", 
+      RowBox[{"{", 
+       RowBox[{
+        RowBox[{"sol1", "/.", " ", 
+         RowBox[{"x", "->", "0"}]}], ",", 
+        RowBox[{"(", 
+         RowBox[{
+          RowBox[{"D", "[", 
+           RowBox[{"sol1", ",", "x"}], "]"}], "/.", " ", 
+          RowBox[{"x", "->", "0"}]}], ")"}], ",", 
+        RowBox[{"(", 
+         RowBox[{
+          RowBox[{"D", "[", 
+           RowBox[{"sol1", ",", 
+            RowBox[{"{", 
+             RowBox[{"x", ",", "2"}], "}"}]}], "]"}], "/.", " ", 
+          RowBox[{"x", "->", "0"}]}], ")"}]}], "}"}]}], "]"}], ";"}], 
+   "\[IndentingNewLine]", "\n", 
+   RowBox[{"(*", 
+    RowBox[{
+     RowBox[{"--", 
+      RowBox[{"--", 
+       RowBox[{"--", 
+        RowBox[{"--", 
+         RowBox[{"--", 
+          RowBox[{"--", 
+           RowBox[{"--", 
+            RowBox[{"--", 
+             RowBox[{"--", "Problema"}]}]}]}]}]}]}]}]}], " ", 
+     RowBox[{
+      RowBox[{
+       RowBox[{
+        RowBox[{
+         RowBox[{
+          RowBox[{
+           RowBox[{
+            RowBox[{
+             RowBox[{"2", "--"}], "--"}], "--"}], "--"}], "--"}], "--"}], 
+        "--"}], "--"}], "--"}]}], "*)"}], "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{"eq2", "=", 
+     RowBox[{
+      RowBox[{
+       RowBox[{
+        RowBox[{"y", "''"}], "[", "x", "]"}], "+", 
+       RowBox[{
+        RowBox[{"y", "'"}], "[", "x", "]"}]}], "==", "x"}]}], ";"}], "\n", 
+   RowBox[{
+    RowBox[{"ic2", "=", 
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{
+        RowBox[{"y", "[", "0", "]"}], "==", "0"}], ",", 
+       RowBox[{
+        RowBox[{
+         RowBox[{"y", "'"}], "[", "0", "]"}], "==", "0"}]}], "}"}]}], ";"}], 
+   "\n", 
+   RowBox[{
+    RowBox[{"sol2", "=", 
+     RowBox[{"DSolveValue", "[", 
+      RowBox[{
+       RowBox[{"{", 
+        RowBox[{"eq2", ",", "ic2"}], "}"}], ",", 
+       RowBox[{"y", "[", "x", "]"}], ",", "x"}], "]"}]}], ";"}], "\n", 
+   RowBox[{
+    RowBox[{"Print", "[", 
+     RowBox[{"\"\<\\nSoluci\[OAcute]n 2: \>\"", ",", "sol2"}], "]"}], ";"}], 
+   "\n", 
+   RowBox[{
+    RowBox[{"Print", "[", 
+     RowBox[{"\"\<Verificaci\[OAcute]n C.I. (y(0), y'(0)) = \>\"", ",", 
+      RowBox[{"{", 
+       RowBox[{
+        RowBox[{"sol2", "/.", " ", 
+         RowBox[{"x", "->", "0"}]}], ",", 
+        RowBox[{"(", 
+         RowBox[{
+          RowBox[{"D", "[", 
+           RowBox[{"sol2", ",", "x"}], "]"}], "/.", " ", 
+          RowBox[{"x", "->", "0"}]}], ")"}]}], "}"}]}], "]"}], ";"}], "\n", 
+   "\[IndentingNewLine]", 
+   RowBox[{"(*", 
+    RowBox[{
+     RowBox[{"--", 
+      RowBox[{"--", 
+       RowBox[{"--", 
+        RowBox[{"--", 
+         RowBox[{"--", 
+          RowBox[{"--", 
+           RowBox[{"--", 
+            RowBox[{"--", 
+             RowBox[{"--", "Problema"}]}]}]}]}]}]}]}]}], " ", 
+     RowBox[{
+      RowBox[{
+       RowBox[{
+        RowBox[{
+         RowBox[{
+          RowBox[{
+           RowBox[{
+            RowBox[{
+             RowBox[{"3", "--"}], "--"}], "--"}], "--"}], "--"}], "--"}], 
+        "--"}], "--"}], "--"}]}], "*)"}], "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{"eq3", "=", 
+     RowBox[{
+      RowBox[{
+       RowBox[{
+        RowBox[{"y", "''"}], "[", "x", "]"}], "+", 
+       RowBox[{
+        RowBox[{"y", "'"}], "[", "x", "]"}], "-", 
+       RowBox[{"12", " ", 
+        RowBox[{"y", "[", "x", "]"}]}]}], "==", 
+      RowBox[{"3", " ", 
+       RowBox[{"Exp", "[", 
+        RowBox[{"4", " ", "x"}], "]"}]}]}]}], ";"}], "\n", 
+   RowBox[{
+    RowBox[{"ic3", "=", 
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{
+        RowBox[{"y", "[", "0", "]"}], "==", "0"}], ",", 
+       RowBox[{
+        RowBox[{
+         RowBox[{"y", "'"}], "[", "0", "]"}], "==", "6"}]}], "}"}]}], ";"}], 
+   "\n", 
+   RowBox[{
+    RowBox[{"sol3", "=", 
+     RowBox[{"DSolveValue", "[", 
+      RowBox[{
+       RowBox[{"{", 
+        RowBox[{"eq3", ",", "ic3"}], "}"}], ",", 
+       RowBox[{"y", "[", "x", "]"}], ",", "x"}], "]"}]}], ";"}], "\n", 
+   RowBox[{
+    RowBox[{"Print", "[", 
+     RowBox[{"\"\<\\nSoluci\[OAcute]n 3: \>\"", ",", "sol3"}], "]"}], ";"}], 
+   "\n", 
+   RowBox[{
+    RowBox[{"Print", "[", 
+     RowBox[{"\"\<Verificaci\[OAcute]n C.I. (y(0), y'(0)) = \>\"", ",", 
+      RowBox[{"{", 
+       RowBox[{
+        RowBox[{"sol3", "/.", " ", 
+         RowBox[{"x", "->", "0"}]}], ",", 
+        RowBox[{"(", 
+         RowBox[{
+          RowBox[{"D", "[", 
+           RowBox[{"sol3", ",", "x"}], "]"}], "/.", " ", 
+          RowBox[{"x", "->", "0"}]}], ")"}]}], "}"}]}], "]"}], ";"}], 
+   "\[IndentingNewLine]", "\n", 
+   RowBox[{"(*", 
+    RowBox[{
+     RowBox[{"--", 
+      RowBox[{"--", 
+       RowBox[{"--", 
+        RowBox[{"--", 
+         RowBox[{"--", 
+          RowBox[{"--", 
+           RowBox[{"--", 
+            RowBox[{"--", 
+             RowBox[{"--", "Problema"}]}]}]}]}]}]}]}]}], " ", 
+     RowBox[{
+      RowBox[{
+       RowBox[{
+        RowBox[{
+         RowBox[{
+          RowBox[{
+           RowBox[{
+            RowBox[{
+             RowBox[{"4", "--"}], "--"}], "--"}], "--"}], "--"}], "--"}], 
+        "--"}], "--"}], "--"}]}], "*)"}], "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{"eq4", "=", 
+     RowBox[{
+      RowBox[{
+       RowBox[{
+        RowBox[{"y", "'''"}], "[", "x", "]"}], "-", 
+       RowBox[{"2", " ", 
+        RowBox[{
+         RowBox[{"y", "''"}], "[", "x", "]"}]}], "+", 
+       RowBox[{
+        RowBox[{"y", "'"}], "[", "x", "]"}]}], "==", 
+      RowBox[{
+       RowBox[{"2", " ", 
+        RowBox[{"Exp", "[", "x", "]"}]}], "+", 
+       RowBox[{"2", " ", "x"}]}]}]}], ";"}], "\n", 
+   RowBox[{
+    RowBox[{"ic4", "=", 
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{
+        RowBox[{"y", "[", "0", "]"}], "==", "0"}], ",", 
+       RowBox[{
+        RowBox[{
+         RowBox[{"y", "'"}], "[", "0", "]"}], "==", "0"}], ",", 
+       RowBox[{
+        RowBox[{
+         RowBox[{"y", "''"}], "[", "0", "]"}], "==", "0"}]}], "}"}]}], ";"}], 
+   "\n", 
+   RowBox[{
+    RowBox[{"sol4", "=", 
+     RowBox[{"DSolveValue", "[", 
+      RowBox[{
+       RowBox[{"{", 
+        RowBox[{"eq4", ",", "ic4"}], "}"}], ",", 
+       RowBox[{"y", "[", "x", "]"}], ",", "x"}], "]"}]}], ";"}], "\n", 
+   RowBox[{
+    RowBox[{"Print", "[", 
+     RowBox[{"\"\<\\nSoluci\[OAcute]n 4: \>\"", ",", "sol4"}], "]"}], ";"}], 
+   "\n", 
+   RowBox[{
+    RowBox[{"Print", "[", 
+     RowBox[{
+     "\"\<Verificaci\[OAcute]n C.I. (y(0), y'(0), y''(0)) = \>\"", ",", 
+      RowBox[{"{", 
+       RowBox[{
+        RowBox[{"sol4", "/.", " ", 
+         RowBox[{"x", "->", "0"}]}], ",", 
+        RowBox[{"(", 
+         RowBox[{
+          RowBox[{"D", "[", 
+           RowBox[{"sol4", ",", "x"}], "]"}], "/.", " ", 
+          RowBox[{"x", "->", "0"}]}], ")"}], ",", 
+        RowBox[{"(", 
+         RowBox[{
+          RowBox[{"D", "[", 
+           RowBox[{"sol4", ",", 
+            RowBox[{"{", 
+             RowBox[{"x", ",", "2"}], "}"}]}], "]"}], "/.", " ", 
+          RowBox[{"x", "->", "0"}]}], ")"}]}], "}"}]}], "]"}], ";"}], 
+   "\[IndentingNewLine]", "\[IndentingNewLine]", 
+   RowBox[{"(*", 
+    RowBox[{"Opcional", ":", 
+     RowBox[{
+     "simplificar", " ", "las", " ", "soluciones", " ", "para", " ", "una", 
+      " ", "forma", " ", "m\[AAcute]s", " ", "legible"}]}], "*)"}], "\n", 
+   RowBox[{
+    RowBox[{"Print", "[", "\"\<\\nSoluciones simplificadas:\>\"", "]"}], 
+    ";"}], "\n", 
+   RowBox[{
+    RowBox[{"Print", "[", 
+     RowBox[{"\"\<S1 = \>\"", ",", 
+      RowBox[{"FullSimplify", "[", "sol1", "]"}]}], "]"}], ";"}], "\n", 
+   RowBox[{
+    RowBox[{"Print", "[", 
+     RowBox[{"\"\<S2 = \>\"", ",", 
+      RowBox[{"FullSimplify", "[", "sol2", "]"}]}], "]"}], ";"}], "\n", 
+   RowBox[{
+    RowBox[{"Print", "[", 
+     RowBox[{"\"\<S3 = \>\"", ",", 
+      RowBox[{"FullSimplify", "[", "sol3", "]"}]}], "]"}], ";"}], "\n", 
+   RowBox[{
+    RowBox[{"Print", "[", 
+     RowBox[{"\"\<S4 = \>\"", ",", 
+      RowBox[{"FullSimplify", "[", "sol4", "]"}]}], "]"}], ";"}], 
+   "\n"}]}]], "Input",
+ CellChangeTimes->{
+  3.9686236528821754`*^9, {3.968624790706976*^9, 3.968624792632985*^9}, {
+   3.968624935000722*^9, 3.9686249687921667`*^9}, 3.9686331982762423`*^9, 
+   3.968633291173951*^9},
+ CellLabel->
+  "In[101]:=",ExpressionUUID->"b6aee1dd-a4dd-4fb9-b927-abe50744d5c8"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ InterpretationBox[
+  RowBox[{"\<\"Soluci\[OAcute]n 1: \"\>", "\[InvisibleSpace]", 
+   SuperscriptBox["\[ExponentialE]", "x"]}],
+  SequenceForm["Soluci\[OAcute]n 1: ", E^$CellContext`x],
+  Editable->False]], "Print",
+ CellChangeTimes->{3.968624403715767*^9, 3.968624799732763*^9, 
+  3.96862497987817*^9, 3.968633208660921*^9, 3.968633296051215*^9},
+ CellLabel->
+  "During evaluation of \
+In[101]:=",ExpressionUUID->"5713e748-133b-4947-a0b4-401ae64bc493"],
+
+Cell[BoxData[
+ InterpretationBox[
+  RowBox[{"\<\"Verificaci\[OAcute]n C.I. (y(0), y'(0), y''(0)) = \"\>", 
+   "\[InvisibleSpace]", 
+   RowBox[{"{", 
+    RowBox[{"1", ",", "1", ",", "1"}], "}"}]}],
+  SequenceForm[
+  "Verificaci\[OAcute]n C.I. (y(0), y'(0), y''(0)) = ", {1, 1, 1}],
+  Editable->False]], "Print",
+ CellChangeTimes->{3.968624403715767*^9, 3.968624799732763*^9, 
+  3.96862497987817*^9, 3.968633208660921*^9, 3.968633296065574*^9},
+ CellLabel->
+  "During evaluation of \
+In[101]:=",ExpressionUUID->"bf9dcdd1-341a-4893-b18e-6466a85c6d44"],
+
+Cell[BoxData[
+ InterpretationBox[
+  RowBox[{"\<\"\\nSoluci\[OAcute]n 2: \"\>", "\[InvisibleSpace]", 
+   RowBox[{
+    FractionBox["1", "2"], " ", 
+    SuperscriptBox["\[ExponentialE]", 
+     RowBox[{"-", "x"}]], " ", 
+    RowBox[{"(", 
+     RowBox[{
+      RowBox[{"-", "2"}], "+", 
+      RowBox[{"2", " ", 
+       SuperscriptBox["\[ExponentialE]", "x"]}], "-", 
+      RowBox[{"2", " ", 
+       SuperscriptBox["\[ExponentialE]", "x"], " ", "x"}], "+", 
+      RowBox[{
+       SuperscriptBox["\[ExponentialE]", "x"], " ", 
+       SuperscriptBox["x", "2"]}]}], ")"}]}]}],
+  SequenceForm[
+  "\nSoluci\[OAcute]n 2: ", Rational[1, 2] 
+   E^(-$CellContext`x) (-2 + 2 E^$CellContext`x - 2 
+    E^$CellContext`x $CellContext`x + E^$CellContext`x $CellContext`x^2)],
+  Editable->False]], "Print",
+ CellChangeTimes->{3.968624403715767*^9, 3.968624799732763*^9, 
+  3.96862497987817*^9, 3.968633208660921*^9, 3.968633296170704*^9},
+ CellLabel->
+  "During evaluation of \
+In[101]:=",ExpressionUUID->"14e4f03c-c5d4-4233-9757-5994127f1c54"],
+
+Cell[BoxData[
+ InterpretationBox[
+  RowBox[{"\<\"Verificaci\[OAcute]n C.I. (y(0), y'(0)) = \"\>", 
+   "\[InvisibleSpace]", 
+   RowBox[{"{", 
+    RowBox[{"0", ",", "0"}], "}"}]}],
+  SequenceForm["Verificaci\[OAcute]n C.I. (y(0), y'(0)) = ", {0, 0}],
+  Editable->False]], "Print",
+ CellChangeTimes->{3.968624403715767*^9, 3.968624799732763*^9, 
+  3.96862497987817*^9, 3.968633208660921*^9, 3.968633296182247*^9},
+ CellLabel->
+  "During evaluation of \
+In[101]:=",ExpressionUUID->"7b49c645-3a87-4ce6-a96a-c4a46447d465"],
+
+Cell[BoxData[
+ InterpretationBox[
+  RowBox[{"\<\"\\nSoluci\[OAcute]n 3: \"\>", "\[InvisibleSpace]", 
+   RowBox[{
+    FractionBox["3", "56"], " ", 
+    SuperscriptBox["\[ExponentialE]", 
+     RowBox[{
+      RowBox[{"-", "4"}], " ", "x"}]], " ", 
+    RowBox[{"(", 
+     RowBox[{
+      RowBox[{"-", "15"}], "+", 
+      RowBox[{"8", " ", 
+       SuperscriptBox["\[ExponentialE]", 
+        RowBox[{"7", " ", "x"}]]}], "+", 
+      RowBox[{"7", " ", 
+       SuperscriptBox["\[ExponentialE]", 
+        RowBox[{"8", " ", "x"}]]}]}], ")"}]}]}],
+  SequenceForm[
+  "\nSoluci\[OAcute]n 3: ", Rational[3, 56] 
+   E^((-4) $CellContext`x) (-15 + 8 E^(7 $CellContext`x) + 
+    7 E^(8 $CellContext`x))],
+  Editable->False]], "Print",
+ CellChangeTimes->{3.968624403715767*^9, 3.968624799732763*^9, 
+  3.96862497987817*^9, 3.968633208660921*^9, 3.968633296251498*^9},
+ CellLabel->
+  "During evaluation of \
+In[101]:=",ExpressionUUID->"1da91d9b-2db7-4b16-97f4-e9665b9e7651"],
+
+Cell[BoxData[
+ InterpretationBox[
+  RowBox[{"\<\"Verificaci\[OAcute]n C.I. (y(0), y'(0)) = \"\>", 
+   "\[InvisibleSpace]", 
+   RowBox[{"{", 
+    RowBox[{"0", ",", "6"}], "}"}]}],
+  SequenceForm["Verificaci\[OAcute]n C.I. (y(0), y'(0)) = ", {0, 6}],
+  Editable->False]], "Print",
+ CellChangeTimes->{3.968624403715767*^9, 3.968624799732763*^9, 
+  3.96862497987817*^9, 3.968633208660921*^9, 3.9686332962585845`*^9},
+ CellLabel->
+  "During evaluation of \
+In[101]:=",ExpressionUUID->"17552634-c80f-416b-b8ac-b614f59d309f"],
+
+Cell[BoxData[
+ InterpretationBox[
+  RowBox[{"\<\"\\nSoluci\[OAcute]n 4: \"\>", "\[InvisibleSpace]", 
+   RowBox[{
+    RowBox[{"(", 
+     RowBox[{"2", "+", "x"}], ")"}], " ", 
+    RowBox[{"(", 
+     RowBox[{"2", "-", 
+      RowBox[{"2", " ", 
+       SuperscriptBox["\[ExponentialE]", "x"]}], "+", "x", "+", 
+      RowBox[{
+       SuperscriptBox["\[ExponentialE]", "x"], " ", "x"}]}], ")"}]}]}],
+  SequenceForm[
+  "\nSoluci\[OAcute]n 4: ", (2 + $CellContext`x) (2 - 2 
+    E^$CellContext`x + $CellContext`x + E^$CellContext`x $CellContext`x)],
+  Editable->False]], "Print",
+ CellChangeTimes->{3.968624403715767*^9, 3.968624799732763*^9, 
+  3.96862497987817*^9, 3.968633208660921*^9, 3.968633296348262*^9},
+ CellLabel->
+  "During evaluation of \
+In[101]:=",ExpressionUUID->"1b9d6d53-7d78-4be7-ade5-e8bbb40f46cd"],
+
+Cell[BoxData[
+ InterpretationBox[
+  RowBox[{"\<\"Verificaci\[OAcute]n C.I. (y(0), y'(0), y''(0)) = \"\>", 
+   "\[InvisibleSpace]", 
+   RowBox[{"{", 
+    RowBox[{"0", ",", "0", ",", "0"}], "}"}]}],
+  SequenceForm[
+  "Verificaci\[OAcute]n C.I. (y(0), y'(0), y''(0)) = ", {0, 0, 0}],
+  Editable->False]], "Print",
+ CellChangeTimes->{3.968624403715767*^9, 3.968624799732763*^9, 
+  3.96862497987817*^9, 3.968633208660921*^9, 3.9686332963645315`*^9},
+ CellLabel->
+  "During evaluation of \
+In[101]:=",ExpressionUUID->"4846515d-2ea4-4b61-92ff-779c7eb8d77f"],
+
+Cell[BoxData["\<\"\\nSoluciones simplificadas:\"\>"], "Print",
+ CellChangeTimes->{3.968624403715767*^9, 3.968624799732763*^9, 
+  3.96862497987817*^9, 3.968633208660921*^9, 3.9686332963659625`*^9},
+ CellLabel->
+  "During evaluation of \
+In[101]:=",ExpressionUUID->"8ee2d132-9c65-4e8f-8c51-94e89ebb00b0"],
+
+Cell[BoxData[
+ InterpretationBox[
+  RowBox[{"\<\"S1 = \"\>", "\[InvisibleSpace]", 
+   SuperscriptBox["\[ExponentialE]", "x"]}],
+  SequenceForm["S1 = ", E^$CellContext`x],
+  Editable->False]], "Print",
+ CellChangeTimes->{3.968624403715767*^9, 3.968624799732763*^9, 
+  3.96862497987817*^9, 3.968633208660921*^9, 3.9686332963779874`*^9},
+ CellLabel->
+  "During evaluation of \
+In[101]:=",ExpressionUUID->"b3ed4a6c-7d0e-4b15-808b-33e36c0c28f0"],
+
+Cell[BoxData[
+ InterpretationBox[
+  RowBox[{"\<\"S2 = \"\>", "\[InvisibleSpace]", 
+   RowBox[{"1", "+", 
+    RowBox[{
+     FractionBox["1", "2"], " ", 
+     RowBox[{"(", 
+      RowBox[{
+       RowBox[{"-", "2"}], "+", "x"}], ")"}], " ", "x"}], "-", 
+    RowBox[{"Cosh", "[", "x", "]"}], "+", 
+    RowBox[{"Sinh", "[", "x", "]"}]}]}],
+  SequenceForm[
+  "S2 = ", 1 + Rational[1, 2] (-2 + $CellContext`x) $CellContext`x - 
+   Cosh[$CellContext`x] + Sinh[$CellContext`x]],
+  Editable->False]], "Print",
+ CellChangeTimes->{3.968624403715767*^9, 3.968624799732763*^9, 
+  3.96862497987817*^9, 3.968633208660921*^9, 3.968633296388505*^9},
+ CellLabel->
+  "During evaluation of \
+In[101]:=",ExpressionUUID->"be802e31-6c89-48ab-b5d8-a979422b7803"],
+
+Cell[BoxData[
+ InterpretationBox[
+  RowBox[{"\<\"S3 = \"\>", "\[InvisibleSpace]", 
+   RowBox[{
+    FractionBox["3", "56"], " ", 
+    SuperscriptBox["\[ExponentialE]", 
+     RowBox[{
+      RowBox[{"-", "4"}], " ", "x"}]], " ", 
+    RowBox[{"(", 
+     RowBox[{
+      RowBox[{"-", "15"}], "+", 
+      RowBox[{
+       SuperscriptBox["\[ExponentialE]", 
+        RowBox[{"7", " ", "x"}]], " ", 
+       RowBox[{"(", 
+        RowBox[{"8", "+", 
+         RowBox[{"7", " ", 
+          SuperscriptBox["\[ExponentialE]", "x"]}]}], ")"}]}]}], ")"}]}]}],
+  SequenceForm[
+  "S3 = ", Rational[3, 56] 
+   E^((-4) $CellContext`x) (-15 + 
+    E^(7 $CellContext`x) (8 + 7 E^$CellContext`x))],
+  Editable->False]], "Print",
+ CellChangeTimes->{3.968624403715767*^9, 3.968624799732763*^9, 
+  3.96862497987817*^9, 3.968633208660921*^9, 3.9686332963976994`*^9},
+ CellLabel->
+  "During evaluation of \
+In[101]:=",ExpressionUUID->"c6d26915-d698-4e57-a81a-6845718082db"],
+
+Cell[BoxData[
+ InterpretationBox[
+  RowBox[{"\<\"S4 = \"\>", "\[InvisibleSpace]", 
+   RowBox[{
+    RowBox[{"(", 
+     RowBox[{"2", "+", "x"}], ")"}], " ", 
+    RowBox[{"(", 
+     RowBox[{"2", "+", 
+      RowBox[{
+       SuperscriptBox["\[ExponentialE]", "x"], " ", 
+       RowBox[{"(", 
+        RowBox[{
+         RowBox[{"-", "2"}], "+", "x"}], ")"}]}], "+", "x"}], ")"}]}]}],
+  SequenceForm[
+  "S4 = ", (2 + $CellContext`x) (2 + 
+    E^$CellContext`x (-2 + $CellContext`x) + $CellContext`x)],
+  Editable->False]], "Print",
+ CellChangeTimes->{3.968624403715767*^9, 3.968624799732763*^9, 
+  3.96862497987817*^9, 3.968633208660921*^9, 3.9686332964012337`*^9},
+ CellLabel->
+  "During evaluation of \
+In[101]:=",ExpressionUUID->"69826879-78a7-4955-a9db-1a33463e62cf"]
+}, Open  ]]
+}, Open  ]]
+},
+WindowSize->{571.8, 524.4},
+WindowMargins->{{284.4, Automatic}, {-4.7999999999999545`, Automatic}},
+Magnification:>1. Inherited,
+FrontEndVersion->"13.0 for Microsoft Windows (64-bit) (December 2, 2021)",
+StyleDefinitions->"Default.nb",
+ExpressionUUID->"fdb14e6b-d35e-44fa-bcbc-cc67b67b9b78"
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[CellGroupData[{
+Cell[580, 22, 9955, 324, 809, "Input",ExpressionUUID->"b6aee1dd-a4dd-4fb9-b927-abe50744d5c8"],
+Cell[CellGroupData[{
+Cell[10560, 350, 468, 10, 22, "Print",ExpressionUUID->"5713e748-133b-4947-a0b4-401ae64bc493"],
+Cell[11031, 362, 548, 13, 22, "Print",ExpressionUUID->"bf9dcdd1-341a-4893-b18e-6466a85c6d44"],
+Cell[11582, 377, 1022, 26, 56, "Print",ExpressionUUID->"14e4f03c-c5d4-4233-9757-5994127f1c54"],
+Cell[12607, 405, 516, 12, 22, "Print",ExpressionUUID->"7b49c645-3a87-4ce6-a96a-c4a46447d465"],
+Cell[13126, 419, 953, 26, 56, "Print",ExpressionUUID->"1da91d9b-2db7-4b16-97f4-e9665b9e7651"],
+Cell[14082, 447, 518, 12, 22, "Print",ExpressionUUID->"17552634-c80f-416b-b8ac-b614f59d309f"],
+Cell[14603, 461, 808, 20, 42, "Print",ExpressionUUID->"1b9d6d53-7d78-4be7-ade5-e8bbb40f46cd"],
+Cell[15414, 483, 550, 13, 22, "Print",ExpressionUUID->"4846515d-2ea4-4b61-92ff-779c7eb8d77f"],
+Cell[15967, 498, 302, 5, 40, "Print",ExpressionUUID->"8ee2d132-9c65-4e8f-8c51-94e89ebb00b0"],
+Cell[16272, 505, 440, 10, 22, "Print",ExpressionUUID->"b3ed4a6c-7d0e-4b15-808b-33e36c0c28f0"],
+Cell[16715, 517, 736, 19, 38, "Print",ExpressionUUID->"be802e31-6c89-48ab-b5d8-a979422b7803"],
+Cell[17454, 538, 942, 27, 38, "Print",ExpressionUUID->"c6d26915-d698-4e57-a81a-6845718082db"],
+Cell[18399, 567, 763, 21, 24, "Print",ExpressionUUID->"69826879-78a7-4955-a9db-1a33463e62cf"]
+}, Open  ]]
+}, Open  ]]
+}
+]
+*)
+
